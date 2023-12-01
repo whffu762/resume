@@ -1,0 +1,16 @@
+server :
+  port: 8080
+
+spring :
+  data:
+    redis:
+      host: localhost
+      password:
+      port: 6379
+
+## Datasource
+#spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+#spring.datasource.url=jdbc:mariadb://192.168.245.128:3307/resume?characterEncoding=utf-8
+#spring.datasource.username=resume
+#spring.datasource.password=232323
+
