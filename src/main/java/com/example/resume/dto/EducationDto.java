@@ -16,13 +16,17 @@ import lombok.NoArgsConstructor;
 public class EducationDto {
 
     private Integer educationId;
+
     @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}~\\d{4}-\\d{2}-\\d{2}$")
     @NotEmpty
     private String period;
+
     @NotEmpty
     private String school;
+
     @NotEmpty
     private String major;
+
     private String etc;
 
     public Education convertEntity(){

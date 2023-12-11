@@ -20,21 +20,27 @@ import lombok.NoArgsConstructor;
 public class PersonalInfoDto {
 
     private Integer resumeId;
+
     @Pattern(regexp = "^[가-힣]+$")
     @NotEmpty
     private String name;
+
     @Pattern(regexp = "[a-zA-Z]+$")
     @NotEmpty
     private String engName;
+
     @Pattern(regexp = "^\\d{6}-\\d{7}$")
     @NotEmpty
     private String residentNum;
+
     @Pattern(regexp = "^\\d{3}-\\d{4}-\\d{4}$")
     @NotEmpty
     private String tel;
+
     @Email
     @NotEmpty
     private String email;
+
     @NotEmpty
     private String address;
 

@@ -16,11 +16,14 @@ import lombok.NoArgsConstructor;
 public class CertificationDto {
 
     private Integer certificationId;
-    @NotEmpty
-    private String certification;
+
     @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
     @NotEmpty
     private String date;
+
+    @NotEmpty
+    private String certification;
+
     @NotEmpty
     private String association;
 

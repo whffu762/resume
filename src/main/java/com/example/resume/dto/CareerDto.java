@@ -16,11 +16,14 @@ import lombok.NoArgsConstructor;
 public class CareerDto {
 
     private Integer careerId;
+
     @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2} ~ \\d{4}-\\d{2}-\\d{2}$")
     @NotEmpty
     private String period;
+
     @NotEmpty
     private String company;
+
     @NotEmpty
     private String task;
 
