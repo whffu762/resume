@@ -1,13 +1,11 @@
 package com.example.resume.controllerAdvice;
 
-import com.example.resume.controller.PersonalInfoController;
 import com.example.resume.dto.ErrorDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,18 +16,20 @@ import java.util.*;
 @RestControllerAdvice
 @AllArgsConstructor
 @Slf4j
-public class PersonalInfoControllerAdvice {
+public class ControllerAdvice {
 
     private final MessageSource messageSource;
 
-    private ErrorDto makeErrorResponse(FieldError error){
-        String field = error.getField();
-        String message = getErrorMessage(error);
+    private void classifyErrors(Map<String, String> errors, FieldError error){
 
-        return ErrorDto.builder()
-                .key(field)
-                .message(message)
-                .build();
+        String field = error.getField();
+        String newMessage = getErrorMessage(error);
+
+        String existedMessage = errors.get(field);
+        if(existedMessage != null) {
+            newMessage = existedMessage+","+newMessage;
+        }
+        errors.put(field, newMessage);
     }
 
     private String getErrorMessage(FieldError error){
@@ -46,15 +46,27 @@ public class PersonalInfoControllerAdvice {
         return error.getDefaultMessage();
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ErrorDto>> test(MethodArgumentNotValidException e){
+    private List<ErrorDto> makeErrorResponse(Map<String, String> errors){
 
-        List<ErrorDto> errors = new ArrayList<>();
-        e.getBindingResult().getFieldErrors().forEach((error)->{
-            errors.add(makeErrorResponse(error));
-        });
+        List<ErrorDto> errorResponse = new ArrayList<>();
 
-        return ResponseEntity.badRequest().body(errors);
+        for(String field : errors.keySet()){
+            errorResponse.add(new ErrorDto(field, errors.get(field)));
+        }
+
+        return errorResponse;
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<List<ErrorDto>> exceptionHandler(MethodArgumentNotValidException e){
+
+        Map<String, String> errors = new HashMap<>();
+        e.getBindingResult().getFieldErrors().forEach((error)->{
+            classifyErrors(errors, error);
+        });
+
+        List<ErrorDto> errorResponse = makeErrorResponse(errors);
+
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
 }

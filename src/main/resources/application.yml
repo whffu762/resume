@@ -8,7 +8,28 @@ spring :
       password:
       port: 6379
 
-## Datasource
+  jpa :
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: create
+
+  datasource:
+    url: jdbc:mysql://localhost:3308/resume?serverTimezone=UTC&characterEncoding=UTF-8
+    username: resumeuser
+    password: 232323
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  messages:
+    basename: errors
+  #  datasource:
+#    url: jdbc:h2:mem:testDB
+#    driver-class-name: org.h2.Driver
+
+
+  sql:
+    init:
+      mode: always
+
+
 #spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 #spring.datasource.url=jdbc:mariadb://192.168.245.128:3307/resume?characterEncoding=utf-8
 #spring.datasource.username=resume

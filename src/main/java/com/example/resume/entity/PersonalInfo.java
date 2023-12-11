@@ -1,25 +1,27 @@
 package com.example.resume.entity;
 
+import com.example.resume.dto.PersonalInfoDto;
 import jakarta.persistence.*;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Entity
-public class Resume {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class PersonalInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer resumeId;
+    private Integer id;
 
     private String engName;
 
     private String name;
 
-    private String birth;
-
-    private String sex;
-
-    private String age;
+    private String residentNum;
 
     private String tel;
 
@@ -27,4 +29,16 @@ public class Resume {
 
     private String address;
 
+    public PersonalInfoDto convertDto(){
+
+        return PersonalInfoDto.builder()
+                .resumeId(this.id)
+                .engName(this.engName)
+                .name(this.name)
+                .residentNum(this.residentNum)
+                .tel(this.tel)
+                .email(this.email)
+                .address(this.address)
+                .build();
+    }
 }

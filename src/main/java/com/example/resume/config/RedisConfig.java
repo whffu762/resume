@@ -11,14 +11,14 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
-@Configuration
-public class RedisConfig {
-
-    //이건 redis 의 정보 볼때 역직력화 하는건가? 이거 안하면 redis 에서 value 확인할 때 16진수로 출력됨
-    @Bean
-    public RedisSerializer<Object> springSessionDefaultRedisSerializer(){
-        return new GenericJackson2JsonRedisSerializer();
-    }
+//@Configuration
+//public class RedisConfig {
+//
+//    //이건 redis 의 정보 볼때 역직력화 하는건가? 이거 안하면 redis 에서 value 확인할 때 16진수로 출력됨
+//    @Bean
+//    public RedisSerializer<Object> springSessionDefaultRedisSerializer(){
+//        return new GenericJackson2JsonRedisSerializer();
+//    }
 
 //    @Value("${spring.data.redis.host}")
 //    private String host;
@@ -48,4 +48,4 @@ public class RedisConfig {
 //
 //        return redisTemplate;
 //    }
-}
+//}

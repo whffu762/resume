@@ -24,6 +24,9 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'mysql:mysql-connector-java:8.0.30'
 
     //redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
@@ -32,10 +35,11 @@ dependencies {
     //ConfigurationProperties 어노테이션 사용 시 spring boot configuration annotation processor not configured 발생 해결
     //annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
-
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    runtimeOnly 'com.h2database:h2'
 
 }
 
