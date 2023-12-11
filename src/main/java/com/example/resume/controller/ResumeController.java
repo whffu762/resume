@@ -6,11 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @Slf4j
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:5000")
 public class ResumeController {
 
     private final ResumeService resumeService;

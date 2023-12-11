@@ -18,15 +18,22 @@ public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String period;
+
+    private String startPeriod;
+
+    private String endPeriod;
+
     private String school;
+
     private String major;
+
     private String etc;
     public EducationDto convertDto(){
 
         return EducationDto.builder()
                 .educationId(this.id)
-                .period(this.period)
+                .startPeriod(this.startPeriod)
+                .endPeriod(this.endPeriod)
                 .school(this.school)
                 .major(this.major)
                 .etc(this.etc)

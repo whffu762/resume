@@ -17,9 +17,13 @@ public class EducationDto {
 
     private Integer educationId;
 
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}~\\d{4}-\\d{2}-\\d{2}$")
+    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
     @NotEmpty
-    private String period;
+    private String startPeriod;
+
+    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
+    @NotEmpty
+    private String endPeriod;
 
     @NotEmpty
     private String school;
@@ -32,7 +36,8 @@ public class EducationDto {
     public Education convertEntity(){
 
         return Education.builder()
-                .period(this.period)
+                .startPeriod(this.startPeriod)
+                .endPeriod(this.endPeriod)
                 .school(this.school)
                 .major(this.major)
                 .etc(this.etc)

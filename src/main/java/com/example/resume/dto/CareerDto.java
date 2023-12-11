@@ -17,9 +17,13 @@ public class CareerDto {
 
     private Integer careerId;
 
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2} ~ \\d{4}-\\d{2}-\\d{2}$")
+    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
     @NotEmpty
-    private String period;
+    private String startPeriod;
+
+    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
+    @NotEmpty
+    private String endPeriod;
 
     @NotEmpty
     private String company;
@@ -30,7 +34,8 @@ public class CareerDto {
     public Career convertEntity(){
 
         return Career.builder()
-                .period(this.period)
+                .startPeriod(this.startPeriod)
+                .endPeriod(this.endPeriod)
                 .company(this.company)
                 .task(this.task)
                 .build();

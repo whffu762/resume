@@ -35,7 +35,7 @@ public class ControllerAdvice {
     private String getErrorMessage(FieldError error){
         for(String code : Objects.requireNonNull(error.getCodes())){
             try{
-                return messageSource.getMessage(code, error.getArguments(), Locale.KOREA );
+                return messageSource.getMessage(code, error.getArguments(), Locale.KOREA);
             } catch (NoSuchMessageException e){
                 //메시지가 없을 때의 처리
             } catch (NullPointerException e) {
