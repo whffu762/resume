@@ -17,6 +17,12 @@ public class PersonalInfoController {
 
     private final PersonalInfoService personalInfoService;
 
+    @GetMapping("/personal-info")
+    public ResponseEntity<PersonalInfoDto> getPersonalInfo(){
+
+        return ResponseEntity.ok().body(personalInfoService.getPersonalInfo());
+    }
+
     @PostMapping("/personal-info")
     public ResponseEntity<String> inputPersonalInfo(@RequestBody @Validated PersonalInfoDto reqBody){
 

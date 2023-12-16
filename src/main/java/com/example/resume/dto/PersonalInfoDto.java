@@ -47,6 +47,7 @@ public class PersonalInfoDto {
     public PersonalInfo convertEntity(){
 
         return PersonalInfo.builder()
+                .id(1)
                 .engName(this.engName)
                 .name(this.name)
                 .residentNum(this.residentNum)
